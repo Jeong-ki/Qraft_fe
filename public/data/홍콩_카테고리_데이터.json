@@ -1,0 +1,92 @@
+[
+	{
+		"value": "Announcements and Notices",
+		"kor": "일반공시",
+		"org": "Announcementsand Notices"
+	},
+	{
+		"value": "Circulars",
+		"kor": "주요안내보고서",
+		"org": "Circulars"
+	},
+	{
+		"value": "Listing Documents",
+		"kor": "보고서",
+		"org": "Listing Documents"
+	},
+	{
+		"value": "Financial Statements/ESG Information",
+		"kor": "재무/ESG",
+		"org": "FinancialStatements/ESG Information"
+	},
+	{
+		"value": "Next Day Disclosure Returns",
+		"kor": "발행주식수변동",
+		"org": "Next Day Disclosure Returns"
+	},
+	{
+		"value": "Monthly Returns",
+		"kor": "월간보고서",
+		"org": "Monthly Returns"
+	},
+	{
+		"value": "Proxy Forms",
+		"kor": "대리행사",
+		"org": "ProxyForms"
+	},
+	{
+		"value": "Company Information Sheet",
+		"kor": "회사개요",
+		"org": "CompanyInformation Sheet"
+	},
+	{
+		"value": "Trading Information of Exchange TradedFunds",
+		"kor": "ETF정보",
+		"org": "Trading Information of Exchange Traded Funds"
+	},
+	{
+		"value": "Trading Information of Leveraged and Inverse Products",
+		"kor": "파생상품거래정보",
+		"org": "Trading Information of Leveraged and Inverse Products"
+	},
+	{
+		"value": "Constitutional Documents",
+		"kor": "정관수정",
+		"org": "ConstitutionalDocuments"
+	},
+	{
+		"value": "Documents on Display",
+		"kor": "기타공시",
+		"org": "Documents onDisplay"
+	},
+	{
+		"value": "Regulatory Announcement & News",
+		"kor": "공지/뉴스",
+		"org": "Regulatory Announcement & News"
+	},
+	{
+		"value": "Takeovers Code - dealingdisclosures",
+		"kor": "거래공시",
+		"org": "Takeovers Code - dealing disclosures"
+	},
+	{
+		"value": "Debt and Structured Products",
+		"kor": "부채/구조화상품",
+		"org": "Debt andStructured Products"
+	},
+	{
+		"value": "Documents on Display (Debt IssuanceProgrammes)",
+		"kor": "채권발행",
+		"org": "Documents on Display (Debt IssuanceProgrammes)"
+	},
+	{
+		"value": "Documents on Display (Debt Securities)",
+		"kor": "채무증권",
+		"org": "Documents on Display (Debt Securities)"
+	},
+	{
+		"value": "Documents on Display(Structured Products)",
+		"kor": "구조화상품",
+		"org": "Documents on Display (StructuredProducts)"
+	}
+]
