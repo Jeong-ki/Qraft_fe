@@ -1,36 +1,173 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 크래프트테크놀로지스 FE 과제
 
-## Getting Started
+공시 데이터 조회 및 필터링 웹 애플리케이션입니다. 심천과 홍콩 거래소의 공시 정보를 통합적으로 조회하고, 키워드 검색 및 기간 필터링을 제공합니다.
 
-First, run the development server:
+<details>
+  <summary>구현 결과 스크린샷</summary>
+  <p align="center">
+    <img src="./screenshots/pc_page.png" alt="Desktop View" width="45%" style="display:inline-block; margin-right: 10px;" />
+    <img src="./screenshots/mobile_page.png" alt="Mobile View" width="45%" style="display:inline-block;" />
+</details>
+</p>
 
+## 🚀 실행 방법
+
+### 1. 저장소 클론 및 의존성 설치
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd qraft
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 개발 서버 실행
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. 브라우저에서 확인
+브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 애플리케이션을 확인하세요.  
+모바일은 크롬 디바이스 모드 사용 : 개발자 도구 > 좌측 상단 아이콘(command + shift + m)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. 빌드 및 프로덕션 실행
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## 📁 폴더 구조 설명
 
-To learn more about Next.js, take a look at the following resources:
+```
+qraft/
+├── public/
+│   ├── assets/
+│   │   ├── css/                   # SCSS 스타일 파일들
+│   │   │   ├── base/              # 기본 스타일 (reset, color, global)
+│   │   │   ├── components/        # 컴포넌트별 스타일
+│   │   │   ├── layout/            # 레이아웃 스타일
+│   │   │   ├── pages/             # 페이지별 스타일
+│   │   │   └── m_custom/          # 모바일 커스텀 스타일
+│   │   └── images/                # 아이콘 및 이미지 자원
+│   └── data/                      # 정적 JSON 데이터 파일
+│       ├── 심천_공시_데이터.json
+│       ├── 심천_카테고리_데이터.json
+│       ├── 홍콩_공시_데이터.json
+│       └── 홍콩_카테고리_데이터.json
+├── src/
+│   ├── app/                      # Next.js App Router
+│   │   ├── @pc/                  # PC 버전 (Parallel Route)
+│   │   ├── @mobile/              # 모바일 버전 (Parallel Route)
+│   │   └── api/                  # API Routes
+│   ├── components/               # 공통 UI 컴포넌트
+│   │   └── ui/                   # 재사용 가능한 UI 컴포넌트들
+│   ├── domain/                   # 도메인별 비즈니스 로직
+│   │   └── disclosure/           # 공시 관련 도메인
+│   │       ├── api/              # API 호출 로직
+│   │       ├── components/       # 도메인 특화 컴포넌트
+│   │       ├── constants/        # 도메인 상수
+│   │       ├── schema/           # 폼 검증 스키마
+│   │       └── types/            # 타입 정의
+│   ├── hooks/                    # 커스텀 훅
+│   ├── lib/                      # 라이브러리 설정
+│   ├── store/                    # 전역 상태 관리 (Zustand)
+│   └── types/                    # 공통 타입 정의
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 사용한 기술 스택 및 선택 이유
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 프론트엔드 프레임워크
+- **Next.js 15.4.1**: App Router를 활용한 최신 React 개발 환경
+- **React 19.1.0**: Next.js 15 호환 최신 React (Server Component)
+- **TypeScript**: 타입 안정성과 코드 품질 향상, 런타임 에러 방지
 
-## Deploy on Vercel
+### 상태 관리 및 데이터 페칭
+- **@tanstack/react-query 5.83.0**: 서버 상태 관리, 캐싱, 자동 재요청 등 강력한 데이터 페칭 기능
+- **Zustand 5.0.6**: 경량화된 전역 상태 관리, 간단한 API와 TypeScript 지원
+- **React Hook Form 7.60.0**: 효율적인 폼 관리, 최소한의 리렌더링
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 데이터 검증 및 유틸리티
+- **Zod 4.0.5**: 런타임 타입 검증, 스키마 기반 폼 검증
+- **Day.js 1.11.13**: 경량화된 날짜 처리 라이브러리
+- **classnames 2.5.1**: 조건부 CSS 클래스 관리
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 스타일링
+- **SCSS**: CSS 전처리기, 변수와 중첩 구조로 유지보수성 향상
+- **모듈화된 스타일 구조**: 컴포넌트별, 레이아웃별, 페이지별 스타일 분리
+
+### 개발 도구
+- **ESLint + Prettier**: 코드 품질 및 포맷팅 일관성 유지
+- **React Query DevTools**: 개발 환경에서 쿼리 상태 디버깅
+
+## 🎯 자유 과제 구현 사항
+
+### ✅ 1. 모바일 반응형 대응
+- **Next.js Parallel Routes** 활용하여 PC(@pc)와 모바일(@mobile) 버전 분리
+- **User Agent 기반 디바이스 감지**로 자동 라우팅
+- **미디어 쿼리**를 통한 세밀한 반응형 디자인
+- 모바일 환경에 최적화된 레이아웃과 인터랙션
+
+### ✅ 2. 성능 최적화
+- **Intersection Observer**를 활용한 무한 스크롤 구현
+- **useCallback**을 통한 이벤트 핸들러 메모이제이션
+- **mome**를 통한 컴포넌트 메모이제이션
+- **React Query**의 `placeholderData: keepPreviousData`로 부드러운 로딩 경험
+- **디바운싱**을 통한 검색 API 호출 최적화 (300ms)
+
+### ✅ 3. 공통 컴포넌트 및 유틸 함수 분리 구조
+- **`components/ui/`**: 재사용 가능한 UI 컴포넌트 (Input, Select, DatePicker, Spinner)
+- **`hooks/`**: 커스텀 훅 분리 (useDebounce, useOutsideClick)
+- **도메인별 컴포넌트**: `domain/disclosure/components/`
+- **barrel exports** 패턴으로 깔끔한 import 구조
+
+### ✅ 4. 전역 상태관리 및 캐시 전략
+- **Zustand**: 전역 로딩 상태 관리, 간단하고 효율적인 상태 관리
+- **React Query**: 
+  - 서버 상태 캐싱 및 동기화
+  - 무한 쿼리를 통한 페이지네이션
+  - 백그라운드 리페칭
+  - 개발 환경 DevTools 제공
+
+### ✅ 5. 추가 최적화 요소
+- **Zod 스키마 검증**: 폼 데이터 검증 및 타입 안정성
+- **도메인 기반 아키텍처**: 비즈니스 로직을 도메인별로 분리
+- **API Route**: Next.js API를 통한 데이터 처리 및 필터링
+- **SCSS 모듈화**: 유지보수 가능한 스타일 구조
+
+## 🎨 구현 중 고려한 UX/UI, 상태관리, 성능 전략
+
+### UX/UI 고려사항
+1. **반응형 디자인**: PC와 모바일에서 각각 최적화된 레이아웃 제공
+2. **로딩 상태 표시**: 전역 스피너와 개별 컴포넌트 로딩 상태 구분
+3. **무한 스크롤**: 페이지네이션 없이 자연스러운 데이터 로딩
+4. **실시간 검색**: 디바운싱을 통한 즉시 반응하는 검색 기능
+5. **접근성**: 시맨틱 HTML과 키보드 내비게이션 고려
+
+### 상태관리 전략
+1. **서버 상태 vs 클라이언트 상태 분리**:
+   - React Query: 서버 데이터 캐싱 및 동기화
+   - Zustand: 전역 UI 상태 (로딩 상태 등)
+   - React Hook Form: 폼 상태 관리
+
+2. **캐시 최적화**:
+   - `keepPreviousData`로 이전 데이터 유지하여 깜빡임 방지
+   - 쿼리 키 기반 자동 캐시 무효화
+   - 백그라운드 리페칭으로 데이터 신선도 유지
+
+### 성능 최적화 전략
+1. **렌더링 최적화**:
+   - `useCallback`으로 불필요한 함수 재생성 방지
+   - 컴포넌트 분리로 리렌더링 범위 최소화
+   - React Hook Form의 최소 리렌더링 활용
+
+2. **네트워크 최적화**:
+   - 디바운싱으로 API 호출 빈도 제어
+   - 무한 스크롤로 필요한 데이터만 점진적 로드
+   - React Query 캐싱으로 중복 요청 방지
+
+3. **번들 최적화**:
+   - Day.js 사용으로 Moment.js 대비 번들 크기 축소
+   - 필요한 모듈만 import하는 트리 셰이킹 활용
+   - Next.js 자동 코드 스플리팅 활용
+
+4. **메모리 최적화**:
+   - Intersection Observer 정리로 메모리 누수 방지
+   - 컴포넌트 언마운트 시 이벤트 리스너 정리

@@ -1,5 +1,11 @@
 import { DisclosurePage } from '../types';
 
+/**
+ * 공시 데이터 조회 API
+ * @param pageParam - 요청할 페이지 번호
+ * @param queryKey - React Query 키 배열, 필터 정보 포함
+ * @returns 공시 데이터와 다음 페이지 정보
+ */
 export const getDisclosure = async ({
   pageParam = 1,
   queryKey,

@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   description: 'Qraft Disclosure',
 };
 
+/**
+ * 루트 레이아웃
+ * Next.js Parallel Routes와 User Agent를 활용하여 디바이스별 UI 렌더링
+ *
+ * @param pc - PC 버전 컴포넌트 (@pc 슬롯)
+ * @param mobile - 모바일 버전 컴포넌트 (@mobile 슬롯)
+ */
 export default async function RootLayout({
   pc,
   mobile,

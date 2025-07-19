@@ -39,6 +39,7 @@ const DisclosureList = ({
       {data.pages.map((page) =>
         page.data.map((item) => <DisclosureCard key={item.id} data={item} />),
       )}
+      {/* 무한 스크롤 트리거 요소 */}
       <div ref={observerRef} style={{ height: '50px' }}>
         {isFetchingNextPage && <Spinner />}
       </div>

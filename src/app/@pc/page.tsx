@@ -32,7 +32,7 @@ export default function DisclosurePage() {
       queryFn: getDisclosure,
       initialPageParam: 1,
       getNextPageParam: (lastPage) => lastPage.nextPage,
-      placeholderData: keepPreviousData,
+      placeholderData: keepPreviousData, // 이전 데이터 유지(깜빡임 방지)
     });
 
   const handleExchangeChange = useCallback(
@@ -58,7 +58,7 @@ export default function DisclosurePage() {
           fetchNextPage();
         }
       },
-      { threshold: 1 },
+      { threshold: 1 }, // 요소가 100% 보일 때 트리거
     );
 
     observer.observe(observerRef.current);
