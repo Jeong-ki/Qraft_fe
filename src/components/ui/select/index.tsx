@@ -56,7 +56,7 @@ const Select = ({
     <div className="form_group">
       {label && <span className="form_label">{label}</span>}
       <div ref={selectRef} className={classNames('item_form', wrapperClassName)}>
-        <div className={classNames('opt_comm', 'opt_select')}>
+        <div className={classNames('opt_comm', 'opt_select', { opt_open: isOpen })}>
           <button type="button" className="link_selected" onClick={handleToggle}>
             {selectedLabel || placeholder}
             <span className="ico_comm ico_polygon" />

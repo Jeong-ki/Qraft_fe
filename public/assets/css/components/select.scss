@@ -2,6 +2,12 @@
   position: relative;
   width: 100%;
 
+  &.opt_open {
+    button {
+      border-color: var(--black);
+    }
+  }
+
   .link_selected {
     display: block;
     overflow: hidden;
