@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 interface SelectProps {
   value: string | number;
-  options: Record<string, any>[];
+  options: readonly Record<string, any>[];
   onChagne: (value: string | number) => void;
   label?: string;
   placeholder?: string;
