@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 type UseOutsideClickHandler = () => void;
 type ExcludedClassNames = string[];
 
-const useOutsideClick = <T extends HTMLElement>(
+export const useOutsideClick = <T extends HTMLElement>(
   handler: UseOutsideClickHandler,
   excludedClassNames: ExcludedClassNames = [],
 ) => {
@@ -35,5 +35,3 @@ const useOutsideClick = <T extends HTMLElement>(
 
   return ref;
 };
-
-export { useOutsideClick };

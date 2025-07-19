@@ -6,14 +6,14 @@ import { useForm } from 'react-hook-form';
 import {
   disclosureFilterSchema,
   DisclosureFormValues,
-} from '@/domain/disclosure/schema/disclosure-schema';
+} from '@/domain/disclosure/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DISCLOSURE_EXCHANGE_OPTIONS } from '@/domain/disclosure/constants';
 import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 import { getDisclosure } from '@/domain/disclosure/api';
 import { useEffect, useRef } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
-import DisclosureList from '@/domain/disclosure/components/disclosure-list';
+import { DisclosureList } from '@/domain/disclosure/components';
 
 export default function DisclosurePage() {
   const observerRef = useRef<HTMLDivElement>(null);
