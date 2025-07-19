@@ -1,19 +1,31 @@
 'use client';
 
 import DisclosureCard from '@/components/domain/disclosure/disclosure-card';
-import React from 'react';
+import Select from '@/components/ui/select';
+import React, { useState } from 'react';
 
 export default function DisclosurePage() {
+  const [exchange, setExchange] = useState('all');
+
+  const handleExchangeChange = (value: string | number) => {
+    setExchange(value as string);
+  };
+
   return (
     <div className="disclosure-container">
       {/* 필터 영역 */}
       <section className="cont-filter">
         <div className="filter-group">
-          <label htmlFor="exchange">거래소</label>
-          <select id="exchange" defaultValue="shenzhen">
-            <option value="shenzhen">심천</option>
-            <option value="shanghai">상해</option>
-          </select>
+          <Select
+            label="거래소"
+            value={exchange}
+            options={[
+              { label: '전체', value: 'all' },
+              { label: '심천', value: 'shenzhen' },
+              { label: '홍콩', value: 'hongkong' },
+            ]}
+            onChagne={handleExchangeChange}
+          />
         </div>
         <div className="filter-group">
           <label htmlFor="keyword">키워드</label>

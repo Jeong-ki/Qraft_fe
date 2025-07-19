@@ -1,0 +1,23 @@
+.form_group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .form_label {
+    font-weight: 600;
+    font-size: 15px;
+  }
+}
+.item_form {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+.form_small {
+  width: 100px;
+}
+
+.form_medium {
+  width: 120px;
+}
