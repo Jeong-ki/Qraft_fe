@@ -10,7 +10,7 @@ interface DisclosureCardProps {
   data: Disclosure;
 }
 
-export default function DisclosureCard({ data }: DisclosureCardProps) {
+const DisclosureCard = ({ data }: DisclosureCardProps) => {
   const topics = data.analysisDetails.topicKor
     .split(',')
     .slice(0, 3)
@@ -57,4 +57,6 @@ export default function DisclosureCard({ data }: DisclosureCardProps) {
       </div>
     </article>
   );
-}
+};
+
+export default DisclosureCard;

@@ -14,3 +14,8 @@ export interface Disclosure {
   };
   categoryName?: string;
 }
+
+export interface DisclosurePage {
+  data: Disclosure[];
+  nextPage: number | null;
+}

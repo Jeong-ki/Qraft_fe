@@ -1,12 +1,20 @@
-import { Disclosure } from '../types';
-import { DisclosureFormValues } from '../schema/disclosure-schema';
+import { DisclosurePage } from '../types';
 
-export const getDisclosure = async (params: DisclosureFormValues): Promise<Disclosure[]> => {
+export const getDisclosure = async ({
+  pageParam = 1,
+  queryKey,
+}: {
+  pageParam: number;
+  queryKey: any[];
+}): Promise<DisclosurePage> => {
+  const [, filters] = queryKey;
+
   const query = new URLSearchParams({
-    exchange: params.exchange,
-    keyword: params.keyword,
-    startDate: params.startDate.toISOString(),
-    endDate: params.endDate.toISOString(),
+    exchange: filters.exchange,
+    keyword: filters.keyword,
+    startDate: filters.startDate.toISOString(),
+    endDate: filters.endDate.toISOString(),
+    page: pageParam.toString(),
   });
 
   const response = await fetch(`/api/disclosure?${query.toString()}`);

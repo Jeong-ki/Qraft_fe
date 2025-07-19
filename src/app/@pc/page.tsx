@@ -1,7 +1,6 @@
 'use client';
 
-import DisclosureCard from '@/domain/disclosure/components/disclosure-card';
-import { DateRangePicker, Input, Select, Spinner } from '@/components/ui';
+import { DateRangePicker, Input, Select } from '@/components/ui';
 import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 import {
@@ -10,10 +9,14 @@ import {
 } from '@/domain/disclosure/schema/disclosure-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DISCLOSURE_EXCHANGE_OPTIONS } from '@/domain/disclosure/constants';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 import { getDisclosure } from '@/domain/disclosure/api';
+import { useEffect, useRef } from 'react';
+import { useDebounce } from '@/hooks/useDebounce';
+import DisclosureList from '@/domain/disclosure/components/disclosure-list';
 
 export default function DisclosurePage() {
+  const observerRef = useRef<HTMLDivElement>(null);
   const { watch, setValue } = useForm<DisclosureFormValues>({
     resolver: zodResolver(disclosureFilterSchema),
     defaultValues: {
@@ -23,6 +26,17 @@ export default function DisclosurePage() {
       endDate: dayjs(),
     },
   });
+  const { keyword, ...filters } = watch();
+  const debouncedKeyword = useDebounce(keyword, 300);
+
+  const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage, isError } =
+    useInfiniteQuery({
+      queryKey: ['disclosure', { ...filters, keyword: debouncedKeyword }],
+      queryFn: getDisclosure,
+      initialPageParam: 1,
+      getNextPageParam: (lastPage) => lastPage.nextPage,
+      placeholderData: keepPreviousData,
+    });
 
   const handleExchangeChange = (value: string | number) => {
     setValue('exchange', value as 'all' | 'shenzhen' | 'hongkong');
@@ -32,19 +46,22 @@ export default function DisclosurePage() {
     setValue('keyword', value);
   };
 
-  const { data, isLoading } = useQuery({
-    queryKey: [
-      'disclosure',
-      watch('exchange'),
-      watch('keyword'),
-      watch('startDate'),
-      watch('endDate'),
-    ],
-    queryFn: () => getDisclosure(watch()),
-    placeholderData: keepPreviousData,
-  });
+  useEffect(() => {
+    if (!observerRef.current) return;
 
-  console.log(isLoading);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 1 },
+    );
+
+    observer.observe(observerRef.current);
+
+    return () => observer.disconnect();
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   return (
     <div className="disclosure-container">
@@ -83,15 +100,13 @@ export default function DisclosurePage() {
 
       {/* 메인 영역 (카드 목록) */}
       <main className="cont-cards-list">
-        {isLoading ? (
-          <div className="spinner-wrappper">
-            <Spinner />
-          </div>
-        ) : data && data.length > 0 ? (
-          data.map((item) => <DisclosureCard key={item.id} data={item} />)
-        ) : (
-          <div className="no-data">조회 결과가 없습니다.</div>
-        )}
+        <DisclosureList
+          isLoading={isLoading}
+          isError={isError}
+          data={data}
+          isFetchingNextPage={isFetchingNextPage}
+          observerRef={observerRef}
+        />
       </main>
     </div>
   );

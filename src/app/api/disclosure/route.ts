@@ -40,6 +40,9 @@ export async function GET(request: Request) {
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
 
+    const page = parseInt(searchParams.get('page') || '1', 10);
+    const limit = 10;
+
     let combinedData: Disclosure[] = [];
 
     if (exchange === 'shenzhen') {
@@ -58,6 +61,7 @@ export async function GET(request: Request) {
 
     let filteredData = combinedData;
 
+    // 조건 필터링
     if (keyword) {
       filteredData = filteredData.filter((item) => {
         const keywordLower = keyword.toLowerCase();
@@ -78,7 +82,16 @@ export async function GET(request: Request) {
       );
     }
 
-    return NextResponse.json(filteredData, { status: 200 });
+    // 페이지네이션
+    const totalItems = filteredData.length;
+    const totalPages = Math.ceil(totalItems / limit);
+    const startIndex = (page - 1) * limit;
+    const paginatedData = filteredData.slice(startIndex, startIndex + limit);
+
+    return NextResponse.json({
+      data: paginatedData,
+      nextPage: page < totalPages ? page + 1 : null,
+    });
   } catch (error) {
     console.error('API Error:', error);
     return NextResponse.json({ error: '데이터를 불러오는 데 실패했습니다.' }, { status: 500 });
