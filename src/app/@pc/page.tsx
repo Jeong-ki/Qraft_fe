@@ -3,15 +3,12 @@
 import { DateRangePicker, Input, Select } from '@/components/ui';
 import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
-import {
-  disclosureFilterSchema,
-  DisclosureFormValues,
-} from '@/domain/disclosure/schema';
+import { disclosureFilterSchema, DisclosureFormValues } from '@/domain/disclosure/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { DISCLOSURE_EXCHANGE_OPTIONS } from '@/domain/disclosure/constants';
 import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 import { getDisclosure } from '@/domain/disclosure/api';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import { DisclosureList } from '@/domain/disclosure/components';
 
@@ -38,13 +35,19 @@ export default function DisclosurePage() {
       placeholderData: keepPreviousData,
     });
 
-  const handleExchangeChange = (value: string | number) => {
-    setValue('exchange', value as 'all' | 'shenzhen' | 'hongkong');
-  };
+  const handleExchangeChange = useCallback(
+    (value: string | number) => {
+      setValue('exchange', value as 'all' | 'shenzhen' | 'hongkong');
+    },
+    [setValue],
+  );
 
-  const handleKeywordChange = (value: string) => {
-    setValue('keyword', value);
-  };
+  const handleKeywordChange = useCallback(
+    (value: string) => {
+      setValue('keyword', value);
+    },
+    [setValue],
+  );
 
   useEffect(() => {
     if (!observerRef.current) return;

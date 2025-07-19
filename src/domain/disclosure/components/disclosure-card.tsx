@@ -1,3 +1,4 @@
+import React from 'react';
 import { Disclosure } from '../types';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
@@ -46,7 +47,6 @@ const DisclosureCard = ({ data }: DisclosureCardProps) => {
               </span>
             ))}
           </div>
-
           <div className="disclosure-type">{data.categoryName}</div>
         </div>
       </div>
@@ -59,4 +59,4 @@ const DisclosureCard = ({ data }: DisclosureCardProps) => {
   );
 };
 
-export default DisclosureCard;
+export default React.memo(DisclosureCard);
