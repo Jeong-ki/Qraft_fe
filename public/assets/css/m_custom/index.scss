@@ -1,0 +1,78 @@
+.cont-filter {
+  padding: 0;
+  justify-content: space-between;
+
+  .filter-group-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .filter-date {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    .form_label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .form_group {
+    .form_label {
+      font-size: 14px;
+    }
+  }
+}
+
+.disclosure-container {
+  .cont-cards-list {
+    padding: 16px;
+    gap: 8px;
+    .disclosure-card {
+      width: 100%;
+      padding: 8px 0;
+      border: none;
+      border-bottom: 1px solid #e0e0e0;
+      border-radius: 0;
+
+      .card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .card-category {
+          color: var(--white);
+          font-size: 13px;
+          font-weight: 500;
+          background-color: #758A8A;
+          padding: 4px 8px;
+          border-radius: 40px;
+        }
+
+        .tags {
+          .tag {
+            font-size: 12px;
+            font-weight: 700;
+            color: #002C2CB2;
+            margin-right: 8px;
+          }
+        }
+      }
+
+      .card-body {
+        padding: 10px 0;
+
+        p {
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+
+      .date-info {
+        font-size: 12px;
+        color: #A1A2AB;
+      }
+    }
+  }
+}

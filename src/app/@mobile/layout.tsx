@@ -1,4 +1,4 @@
-import '@css/style.scss';
+import '@css/m_style.scss';
 
 export default function PcLayout({ children }: { children: React.ReactNode }) {
   return (
