@@ -1,0 +1,184 @@
+/* --- 페이지 컨테이너 --- */
+.disclosure-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  /* 필터 영역 */
+  .cont-filter {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    flex-wrap: wrap;
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      select, input {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+      }
+      input[type="date"] { width: 120px; }
+    }
+    .date-separator { color: var(--text-secondary); }
+  }
+
+  /* 카드 목록 영역 */
+  .cont-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--white);
+    border-radius: 16px;
+    padding: 24px;
+  }
+}
+
+/* --- 공시 카드 --- */
+.disclosure-card {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 32px;
+
+  .card-info-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .card-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .date-info {
+      .date-info-item {
+        display: flex;
+        justify-content: space-between;
+        width: 174px;
+        align-items: center;
+        gap: 4px;
+        font-size: 13px;
+        color: var(--data-info-color);
+        font-weight: 600;
+        span {
+          margin-right: 12px;
+          &:last-child { margin-right: 0; }
+        }
+      }
+    }
+
+    .company-info {
+      color: var(--company-info-color);
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+
+  .info-type {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 0;
+    gap: 12px;
+    
+    .tags {
+      display: flex;
+      gap: 12px;
+      .tag {
+        border: 1px solid var(--tag-border);
+        color: var(--tag-color);
+        border-radius: 4px;
+        padding: 4px 16px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+
+    .disclosure-type {
+      width: 100%;
+      background-color: var(--disclosure-type-bg);
+      color: var(--disclosure-type-text);
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 4px 0;
+      text-align: center;
+    }
+  }
+
+  .card-body {
+    h3 {
+      font-size: 18px;
+      margin: 0 0 16px 0;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin: 0;
+      font-weight: 500;
+    }
+  }
+}
+
+/* --- 반응형 (모바일) --- */
+@media (max-width: 768px) {
+  .container-doc {
+    padding: 10px;
+  }
+
+  .disclosure-container .cont-filter {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    .filter-group input[type="date"] {
+        width: auto;
+    }
+  }
+
+  .disclosure-card {
+    padding: 16px;
+    .card-header, .company-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .card-body {
+      h3 { font-size: 14px; }
+      p { font-size: 14px; }
+    }
+
+    .info-type {
+      .tags {
+        .tag {
+          font-size: 12px;
+          padding: 4px 12px;
+        }
+      }
+      .disclosure-type {
+        font-size: 12px;
+      }
+    }
+  }
+
+  
+}
