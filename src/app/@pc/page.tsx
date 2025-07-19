@@ -1,13 +1,15 @@
 'use client';
 
 import DisclosureCard from '@/components/domain/disclosure/disclosure-card';
-import Input from '@/components/ui/input';
-import Select from '@/components/ui/select';
+import { DateRangePicker, Input, Select } from '@/components/ui';
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
 
 export default function DisclosurePage() {
   const [exchange, setExchange] = useState('all');
   const [keyword, setKeyword] = useState('');
+  const [startDate, setStartDate] = useState<dayjs.Dayjs | null>(dayjs().subtract(1, 'year'));
+  const [endDate, setEndDate] = useState<dayjs.Dayjs | null>(dayjs());
 
   const handleExchangeChange = (value: string | number) => {
     setExchange(value as string);
@@ -40,11 +42,10 @@ export default function DisclosurePage() {
           onChange={handleKeywordChange}
           placeholder="키워드 입력"
         />
-        <div className="filter-group">
-          <input type="date" id="start-date" defaultValue="2023-05-01" />
-          <span className="date-separator">{'>'}</span>
-          <input type="date" id="end-date" defaultValue="2024-05-01" />
-        </div>
+        <DateRangePicker
+          start={{ date: startDate, setDate: setStartDate, maxDate: endDate }}
+          end={{ date: endDate, setDate: setEndDate, minDate: startDate }}
+        />
       </section>
 
       {/* 메인 영역 (카드 목록) */}

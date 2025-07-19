@@ -1,0 +1,16 @@
+.range-picker {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.date-picker {
+  position: relative;
+
+  .ico_calendar {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
